@@ -1,0 +1,20 @@
+{
+    "name": "tuxonice/json-validator",
+    "version": "0.0.1",
+    "type": "project",
+    "keywords": ["php"],
+    "autoload": {
+        "psr-4": {
+            "Tlab\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+    },
+    "require": {
+        "symfony/http-foundation": "^6.0",
+        "vlucas/phpdotenv": "^5.5",
+        "opis/json-schema": "^2.3",
+        "ext-json": "*"
+    }
+}

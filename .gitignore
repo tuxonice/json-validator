@@ -1,0 +1,7 @@
+/var/logs/*
+.idea
+vendor/
+.env
+/bin/
+/docker/
+/docker-compose.yml
