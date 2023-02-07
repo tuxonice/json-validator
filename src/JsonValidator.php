@@ -3,10 +3,7 @@
 namespace Tlab;
 
 use Symfony\Component\HttpFoundation\Request;
-use Opis\JsonSchema\{
-    Validator,
-    Errors\ErrorFormatter
-};
+use Opis\JsonSchema\{Validator, Errors\ErrorFormatter};
 
 class JsonValidator
 {
@@ -29,6 +26,7 @@ class JsonValidator
       $data = json_encode($data);
 
       $validator = new Validator();
+      $validator->setMaxErrors(5);
 
       // Decode $data
       $data = json_decode($data);
@@ -42,11 +40,13 @@ class JsonValidator
           ]);
       }
 
+      $error = $result->error();
+      $formatter = new ErrorFormatter();
+
       return json_encode(
           [
               'valid' => false,
-              'message' => (new ErrorFormatter())
-                  ->format($result->error()),
+              'message' => $formatter->format($error, false),
           ]
       );
   }

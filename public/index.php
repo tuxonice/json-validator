@@ -93,8 +93,9 @@
             }
 
             $.ajax(settings).done(function (response) {
+                let resultElement = $("#result");
                 if(response.valid) {
-                    $("#result")
+                    resultElement
                         .removeClass('alert-danger')
                         .addClass('alert-success')
                         .html('Json is valid')
@@ -104,14 +105,15 @@
 
                 if(!response.valid) {
                     let errorKeys = Object.keys(response.message);
-
+                    console.log(errorKeys);
+                    resultElement.html('');
                     errorKeys.forEach(
                         (errorKey) => {
-                            $("#result").html(errorKey + ': ' + response.message[errorKey][0]);
+                            $("#result").append('<div><b>' + errorKey + '</b>: ' + response.message[errorKey] + '</div>');
                         }
                     );
 
-                    $("#result")
+                    resultElement
                         .removeClass('alert-success')
                         .addClass('alert-danger').show();
                 }
